@@ -29,27 +29,31 @@ const Wrapper = styled.div`
   box-shadow: inset 0px 2px 4px rgba(128, 128, 128, 0.35);
 `;
 
+const BarWrapper = styled.div`
+  overflow: hidden;
+  height: 100%;
+  border-radius: 4px;
+`;
+
 const StyledProgressBar = styled.div`
   background-color: ${COLORS.primary};
   width: ${(p) => `${p.value}%`};
   height: 100%;
-  border-radius: var(--border-radius)
-    ${(p) =>
-      p.value < 100 ? "0 0" : "var(--border-radius) var(--border-radius)"}
-    var(--border-radius);
 `;
 
 const ProgressBar = ({ value, size }) => {
   return (
     <Wrapper style={SIZES[size]}>
-      <StyledProgressBar
-        role="progressbar"
-        value={value}
-        style={SIZES[size]}
-        aria-valuenow={value}
-        aria-valuemin="0"
-        aria-valuemax="100"
-      />
+      <BarWrapper>
+        <StyledProgressBar
+          role="progressbar"
+          value={value}
+          style={SIZES[size]}
+          aria-valuenow={value}
+          aria-valuemin="0"
+          aria-valuemax="100"
+        />
+      </BarWrapper>
       <VisuallyHidden>Progress bar</VisuallyHidden>
     </Wrapper>
   );
